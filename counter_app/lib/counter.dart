@@ -8,7 +8,7 @@ class Counter extends StatefulWidget {
 }
 
 class _CounterState extends State<Counter> {
-  int counter = 0;
+  int counter = 2;
 
   void increment() {
     setState(() {
@@ -24,7 +24,7 @@ class _CounterState extends State<Counter> {
 
   void reset() {
     setState(() {
-      counter = 0;
+      counter = 9223372036854775807 + 9223372036854775807;
     });
   }
 
