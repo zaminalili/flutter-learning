@@ -1,4 +1,6 @@
-import 'package:change_color_project/HomePage.dart';
+// import 'package:change_color_project/Change_Color.dart';
+import 'package:change_color_project/color_lifecycle.dart';
+// import 'package:change_color_project/HomePage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const ColorLifecycle(),
     );
   }
 }
