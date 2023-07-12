@@ -1,8 +1,6 @@
-import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:service_project/postmodel.dart';
+import 'package:service_project/service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,16 +10,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late final IMyservice service;
+
   List<PostModel>? _items;
   bool _isLoading = false;
-  late final Dio _dio;
-  final String _baseUrl = 'https://jsonplaceholder.typicode.com';
 
   @override
   void initState() {
     super.initState();
 
-    _dio = Dio(BaseOptions(baseUrl: _baseUrl));
+    service = MyService();
 
     fecthPostItems();
   }
@@ -35,17 +33,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> fecthPostItems() async {
     changeLoading();
 
-    final response = await _dio.get('/posts');
-
-    if (response.statusCode == HttpStatus.ok) {
-      final datas = response.data;
-
-      if (datas is List) {
-        setState(() {
-          _items = datas.map((e) => PostModel.fromJson(e)).toList();
-        });
-      }
-    }
+    _items = await service.getDatas();
 
     changeLoading();
   }
